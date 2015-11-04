@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  location: MyString
-
-two:
-  name: MyString
-  location: MyString
+risk:
+  name: Charades  
+  date: Oct 31 2015
+  location: 1323 Parsons Ave
+  description: MyText

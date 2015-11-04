@@ -6,9 +6,20 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class='<%= controller.controller_name %>'>
+  <div id="banner">
+    <%= @page_title || "GameNight" %>
+  </div>
+  <div id="columns">
+    <div id="side">
+      <ul>
+        <li><a href="../events">Create an Event</a></li>
+        <li><a href="https://ror-final-project-mario-cristiani.c9.io/friends/">Add a Friend</a></li>
+      </ul>
+    </div>
+    <div id="main">
+      <%= yield %>      
+    </div>
+  </div>
 </body>
 </html>

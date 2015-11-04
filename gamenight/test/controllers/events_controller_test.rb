@@ -2,14 +2,14 @@ require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
   setup do
-    @event = events(:one)
+    @event = events(:risk)
   end
 
   test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:events)
-  end
+  end 
 
   test "should get new" do
     get :new
@@ -18,7 +18,7 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should create event" do
     assert_difference('Event.count') do
-      post :create, event: { location: @event.location, name: @event.name }
+      post :create, event: { date: @event.date, description: @event.description, location: @event.location, name: @event.name }
     end
 
     assert_redirected_to event_path(assigns(:event))
@@ -35,7 +35,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "should update event" do
-    patch :update, id: @event, event: { location: @event.location, name: @event.name }
+    patch :update, id: @event, event: { date: @event.date, description: @event.description, location: @event.location, name: @event.name }
     assert_redirected_to event_path(assigns(:event))
   end
 

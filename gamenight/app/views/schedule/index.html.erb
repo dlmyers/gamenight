@@ -1,2 +1,13 @@
-<h1>Schedule#index</h1>
-<p>Find me in app/views/schedule/index.html.erb</p>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>[Group Name] Gamenight Schedule</h1>
+
+<% @events.each do |event| %>
+    <div class="entry">
+      <h3><%= event.name %> taking place on <%= event.date %></h3>
+      <%= sanitize(event.description) %><br />
+      <%= event.location %>
+    </div>
+<% end %>
