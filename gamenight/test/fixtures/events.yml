@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+risk:
+  name: Charades  
+  date: Oct 31 2015
+  location: 1323 Parsons Ave
+  description: MyText
