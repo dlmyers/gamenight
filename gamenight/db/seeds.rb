@@ -9,20 +9,32 @@ Event.delete_all
 Friend.delete_all
 
 Event.create!(name: 'Charades',
-    date: '10/31/2015',
+    date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party')
     
 Event.create!(name: 'Karaoke',
-    date: '12/25/2015',
+    date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party')
     
 Event.create!(name: 'Risk',
-    date: '11/31/2015',
+    date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party')
     
 Friend.create!(name: 'Nico',
     email: 'nico@gmail.com',
+    created_by: 'mcristiani')
+
+Friend.create!(name: 'Don',
+    email: 'don@example.com',
+    created_by: 'mcristiani')
+
+Friend.create!(name: 'Joe',
+    email: 'joe@example.com',
+    created_by: 'mcristiani')
+
+Friend.create!(name: 'Sam',
+    email: 'sam@example.com',
     created_by: 'mcristiani')
