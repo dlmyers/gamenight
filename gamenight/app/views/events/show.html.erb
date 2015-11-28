@@ -35,9 +35,6 @@
 <%= render partial: "/invites/invite_table" if @invites %>
 <%= link_to "Invite a friend to this event", new_invite_path(event_id: @event) %>
 
-<h2>Friends</h2>
-<%= render partial: "/friends/friend_table" if @friends %>
-
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

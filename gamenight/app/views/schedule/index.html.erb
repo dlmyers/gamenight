@@ -7,11 +7,11 @@
 Description goes here.<br /><br />
 
  
-<h1>[Group Name] Gamenight Schedule</h1>
+<h1>[Group Name] Schedule</h1>
 
 <% @events.each do |event| %>
     <div class="entry">
-      <h3><%= link_to "#{event.name} taking place #{event.date.strftime('on %B %-d, %-I:%M %p')}", event_path(event)  %></h3>
+      <h3><%= link_to "#{event.name} taking place #{event.date.strftime('%B %-d at %-I:%M %p')}", event_path(event)  %></h3>
       <%= sanitize(event.description) %><br />
       <%= link_to event.location, "https://maps.google.com?q=#{event.location}" %>
 
