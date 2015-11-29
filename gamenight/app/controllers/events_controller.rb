@@ -10,6 +10,9 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @friends = @event.friends if @event.friends
+    @invites = @event.invites if @event.invites
+
   end
 
   # GET /events/new

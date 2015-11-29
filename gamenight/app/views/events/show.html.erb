@@ -1,24 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+
+<h1><%= @event.name %></h1>
+
 
 <p>
   <strong>Date:</strong>
-  <%= @event.date %>
+  <%= @event.date.strftime('%B %-d at %-I:%M %p') %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @event.location %>
+  <%= link_to @event.location, "https://maps.google.com?q=#{@event.location}" %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
+
+<p>
+	<strong>Friends:</strong>
+	<% invite_status = @invites.collect{|invite| invite.status} %>
+	<%= @friends.count %> invited - 
+
+
+	No response: <%= invite_status.count(Invite::INVITED) %>, 
+	Accepted: <%= invite_status.count(Invite::ACCEPTED) %>, 
+	Declined: <%= invite_status.count(Invite::DECLINED) %>
+
+</p>
+
+<h2>Invitees</h2>
+<%= render partial: "/invites/invite_table" if @invites %>
+<%= link_to "Invite a friend to this event", new_invite_path(event_id: @event) %>
+
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
