@@ -7,21 +7,25 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Event.delete_all
 Friend.delete_all
+Invite.delete_all
 
 Event.create!(name: 'Charades',
     date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
-    description: 'Xmas Eve party')
+    description: 'Xmas Eve party',
+    user_id: '1')
     
 Event.create!(name: 'Karaoke',
     date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
-    description: 'Xmas Eve party')
+    description: 'Xmas Eve party',
+    user_id: '1')
     
 Event.create!(name: 'Risk',
     date: Time.now,
     location: '1323 Parsons Ave, Campbell 95008',
-    description: 'Xmas Eve party')
+    description: 'Xmas Eve party',
+    user_id: '2')
     
 Friend.create!(name: 'Nico',
     email: 'nico@gmail.com',
