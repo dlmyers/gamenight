@@ -15,6 +15,7 @@ class InvitesController < ApplicationController
   # GET /invites/new
   def new
     @invite = Invite.new
+    @selected_event_id = params[:event_id]
   end
 
   # GET /invites/1/edit

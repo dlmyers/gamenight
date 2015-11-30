@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :views
+  devise_for :users
   resources :invites
   resources :friends
-  resources :events
+  resources :events do
+      resources :comments
+  end
   get 'schedule/index'
   get 'events/index'
 
@@ -40,8 +44,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
