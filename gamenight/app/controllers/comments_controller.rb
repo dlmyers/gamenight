@@ -72,7 +72,7 @@ class CommentsController < ApplicationController
 
     def set_event
       @event = Event.find(params[:event_id])
-      @comment_creator = User.find(@comment.user_id)
+      # @comment_creator = User.find(@comment.user_id)
     end
 
     def set_comment_creator
