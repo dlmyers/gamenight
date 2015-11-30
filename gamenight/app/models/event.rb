@@ -4,9 +4,11 @@ class Event < ActiveRecord::Base
  has_many :comments
  belongs_to :users
  validates :name, :date, :location, :user_id, presence: true
+ validate :event_date_cannot_be_in_the_past
  
-    
-     # would need to validate timeliness for event date > https://github.com/adzap/validates_timeliness
-    
-    # do we need to get the current_user ID here  
+ def event_date_cannot_be_in_the_past
+        errors.add(:date, "cannot be in the past.") if
+            !date.blank? and date < Time.now
+ end
+
 end
