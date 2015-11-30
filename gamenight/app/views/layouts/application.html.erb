@@ -30,7 +30,6 @@
 </head>
 <body class='<%= controller.controller_name %>'>
 
-<div class="row">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Game Night", '/', class: "navbar-brand" %>
+          <%= link_to "Game Night", '/', class: "navbar-brand", style:"font-family: 'Oswald', sans-serif;" %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,7 +80,6 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-  </div>
 
 
 <div class="container">
@@ -96,6 +94,10 @@
 </div>
 
 <div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><p class="notice"><%= notice %></p></div>
+  <% end %>
+
   <%= yield %>      
 </div>
 

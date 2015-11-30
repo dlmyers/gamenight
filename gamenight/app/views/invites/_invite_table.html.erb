@@ -1,8 +1,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Event</th>
       <th>Friend</th>
+      <th>Event</th>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -11,8 +11,8 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><strong><%= link_to invite.event.name, invite %></strong></td>
-        <td><%= invite.friend.name %></td>
+        <td><strong><%= link_to invite.friend.name, invite %></strong></td>
+        <td><%= link_to invite.event.name, invite %></td>
         <td><%= invite_status[invite.status].first %></td>
 
         <td><%= link_to 'Edit', edit_invite_path(invite) %></td>

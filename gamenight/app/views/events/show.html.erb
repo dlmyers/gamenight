@@ -1,8 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-
-<h1>My Events: <%= @event.name %></h1>
-
+<div id="title">Event: <%= @event.name %></div>
 
 <p>
   <strong>Date:</strong>
@@ -38,6 +34,16 @@
 
 <h2>Invitees</h2>
 <%= render partial: "/invites/invite_table" if @invites %>
-<%= link_to "Invite a friend to this event", new_invite_path(event_id: @event) %> | 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to "Invite a friend", new_invite_path(event_id: @event) %>
+
+
+<h2>Comments</h2>
+<%= render partial: "/comments/comment_table" if @comments %>
+<%= link_to "Leave a comment", new_event_comment_path(@event) %>
+
+<br /><br />
+
+
+
+<%= link_to 'Edit event', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

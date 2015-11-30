@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   def show
     @friends = @event.friends if @event.friends
     @invites = @event.invites if @event.invites
-
+    @comments = @event.comments if @event.comments
   end
 
   # GET /events/new
