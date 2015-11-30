@@ -10,19 +10,19 @@ Friend.delete_all
 Invite.delete_all
 
 Event.create!(name: 'Charades',
-    date: Time.now,
+    date: Time.now + 1,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party',
     user_id: '1')
     
 Event.create!(name: 'Karaoke',
-    date: Time.now,
+    date: Time.now + 1,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party',
     user_id: '1')
     
 Event.create!(name: 'Risk',
-    date: Time.now,
+    date: Time.now + 1,
     location: '1323 Parsons Ave, Campbell 95008',
     description: 'Xmas Eve party',
     user_id: '2')
