@@ -29,16 +29,16 @@ Event.create!(name: 'Risk',
     
 Friend.create!(name: 'Nico',
     email: 'nico@gmail.com',
-    created_by: 'mcristiani')
+    created_by: '1')
 
 Friend.create!(name: 'Don',
     email: 'don@example.com',
-    created_by: 'mcristiani')
+    created_by: '2')
 
 Friend.create!(name: 'Joe',
     email: 'joe@example.com',
-    created_by: 'mcristiani')
+    created_by: '1')
 
 Friend.create!(name: 'Sam',
     email: 'sam@example.com',
-    created_by: 'mcristiani')
+    created_by: '2')

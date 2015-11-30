@@ -11,13 +11,12 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><%= invite.event.name %></td>
+        <td><strong><%= link_to invite.event.name, invite %></strong></td>
         <td><%= invite.friend.name %></td>
         <td><%= invite_status[invite.status].first %></td>
 
-        <td><%= link_to 'Show', invite %></td>
         <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-        <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

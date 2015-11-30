@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Friend: <%= @friend.name %></h1>
+
 <p>
   <strong>Name:</strong>
   <%= @friend.name %>
@@ -12,7 +14,7 @@
 
 <p>
   <strong>Created By:</strong>
-  <%= @friend.created_by %>
+  <%= link_to @friend_creator.name, "mailto:"+@friend_creator.email if @friend_creator %>
 </p>
 
 <%= link_to 'Edit', edit_friend_path(@friend) %> |

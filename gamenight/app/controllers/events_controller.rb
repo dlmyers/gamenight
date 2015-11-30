@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event_creator, only: [:new, :create]
 
   # GET /events
   # GET /events.json
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @event_creator = current_user
   end
 
   # GET /events/1/edit
@@ -69,10 +71,15 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      @event_creator = User.find(@event.user_id)
+    end
+
+    def set_event_creator
+      @event_creator = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date, :location, :description)
+      params.require(:event).permit(:name, :date, :location, :description, :user_id)
     end
 end
