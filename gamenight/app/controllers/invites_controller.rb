@@ -15,6 +15,7 @@ class InvitesController < ApplicationController
   # GET /invites/new
   def new
     @invite = Invite.new
+    @selected_event_id = params[:event_id]
   end
 
   # GET /invites/1/edit
@@ -69,6 +70,6 @@ class InvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
-      params[:invite]
+      params.require(:invite).permit(:event_id, :friend_id, :status)
     end
 end

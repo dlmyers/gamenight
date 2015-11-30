@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div id="title">Friend: <%= @friend.name %></div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @friend.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @friend.email %>
+</p>
+
+<p>
+  <strong>Created By:</strong>
+  <%= link_to @friend_creator.name, "mailto:"+@friend_creator.email if @friend_creator %>
+</p>
 
 <%= link_to 'Edit', edit_friend_path(@friend) %> |
 <%= link_to 'Back', friends_path %>

@@ -11,6 +11,20 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <%= f.label :event_id %><br>
+    <%= f.collection_select(:event_id, Event.all, :id, :name, {:selected => @selected_event_id}) %>
+  </div>
+  <div class="field">
+    <%= f.label :friend_id %><br>
+    <%= f.collection_select(:friend_id, Friend.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, status_options %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

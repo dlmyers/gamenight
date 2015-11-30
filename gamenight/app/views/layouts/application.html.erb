@@ -1,25 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gamenight</title>
+  <title>Game Night</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <!-- Load Bootstrap from CDN -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- End Bootstrap -->
+
+  <!-- Load Google fonts -->
+
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700,400,300' rel='stylesheet' type='text/css'>
+
+  <!-- End Google fonts -->
+
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
-  <div id="banner">
-    <%= @page_title || "GameNight" %>
-  </div>
-  <div id="columns">
-    <div id="side">
-      <ul>
-        <li><a href="../events">Create an Event</a></li>
-        <li><a href="https://ror-final-project-mario-cristiani.c9.io/friends/">Add a Friend</a></li>
-      </ul>
-    </div>
-    <div id="main">
-      <%= yield %>      
-    </div>
-  </div>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Game Night", '/', class: "navbar-brand", style:"font-family: 'Oswald', sans-serif;" %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "events" %>><%= link_to "Create an Event", new_event_path %></li>
+              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "friends" %>><%= link_to "Add a Friend", new_friend_path %></li>
+            <% end %>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <!-- <li>Logged in as <strong><%= current_user.email %></strong></li> -->
+              <li><%= link_to "My Friends", friends_path %></li>
+              <li><%= link_to "My Events", events_path %></li>
+              <!-- <li><%= link_to "Invites", invites_path %></li> -->
+              <!-- <li><%= link_to "Schedule", schedule_path %></li> -->
+              <li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_registration_path%></li>
+              <li><%= link_to "Login", new_user_session_path%></li>
+            <% end %>
+
+            <li class="dropdown" style="display:none">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+<div class="container">
+
+
+
+<div class="row">
+<div class="col-md-12">
+</div>
+</div>
+  
+</div>
+
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><p class="notice"><%= notice %></p></div>
+  <% end %>
+
+  <%= yield %>      
+</div>
+
 </body>
 </html>

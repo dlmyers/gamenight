@@ -1,5 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
+  before_action :set_friend_creator, only: [:new, :create]
+
 
   # GET /friends
   # GET /friends.json
@@ -25,6 +27,7 @@ class FriendsController < ApplicationController
   # POST /friends.json
   def create
     @friend = Friend.new(friend_params)
+    @friend.created_by = current_user.id
 
     respond_to do |format|
       if @friend.save
@@ -65,10 +68,16 @@ class FriendsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
       @friend = Friend.find(params[:id])
+      @friend_creator = User.find(@friend.created_by)
     end
+
+    def set_friend_creator
+      @friend_creator = current_user
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def friend_params
-      params[:friend]
+      params.require(:friend).permit(:name, :email, :created_by)
     end
 end

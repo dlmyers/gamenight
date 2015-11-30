@@ -1,4 +1,23 @@
+<div id="title">Invite: <%= @invite.event.name %> <-> <%= @invite.friend.name %>
+</div>
+
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Event:</strong>
+  <%= @invite.event.name %>
+</p>
+
+<p>
+  <strong>Friend:</strong>
+  <%= @invite.friend.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= invite_status[@invite.status].first %>
+</p>
+
 <%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back to event', event_path(@invite.event) %> | 
 <%= link_to 'Back', invites_path %>
