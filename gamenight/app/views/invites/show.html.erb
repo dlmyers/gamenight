@@ -1,7 +1,5 @@
-<div id="title">Invite: <%= @invite.event.name %> <-> <%= @invite.friend.name %>
+<div id="title">Invite: <%= @invite.event.name %> <-> <%= @invite.user.name %>
 </div>
-
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Event:</strong>
@@ -10,14 +8,32 @@
 
 <p>
   <strong>Friend:</strong>
-  <%= @invite.friend.name %>
+  <%= @invite.user.name %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= invite_status[@invite.status].first %>
 </p>
+<h3>Event Details</h3>
+
+<%= render partial: "events/event_details" %>
+
+<br />
+
+<div class="row">
+	<div class="col-lg-3">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Respond</h3>
+		  </div>
+		  <div class="panel-body">
+		<%= link_to 'Accept', invite_accept_path(@invite), class: 'btn btn-success' %> <%= link_to 'Decline', invite_decline_path(@invite), class: 'btn btn-danger' %>  </div>
+		</div>
+	</div>
+</div>
+
 
 <%= link_to 'Edit', edit_invite_path(@invite) %> |
-<%= link_to 'Back to event', event_path(@invite.event) %> | 
-<%= link_to 'Back', invites_path %>
+<%= link_to 'Resend invite', invite_resend_path(@invite) %> |
+<%= link_to 'Back to event', event_path(@invite.event) %> 

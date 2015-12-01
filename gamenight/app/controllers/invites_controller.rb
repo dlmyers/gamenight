@@ -1,5 +1,28 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:show, :update, :resend, :accept, :decline]
+
+
+  def resend
+    @invite = Invite.find(params[:invite_id])
+    UserMailer.invite(@invite).deliver
+    redirect_to :back, notice: 'Invite resent'
+  end
+
+  def accept
+    @invite = Invite.find(params[:invite_id])
+    @invite.status = Invite::ACCEPTED
+    @invite.save
+    redirect_to @invite, notice: 'Invite accepted'
+  end
+
+  def decline
+    @invite = Invite.find(params[:invite_id])
+    @invite.status = Invite::DECLINED
+    @invite.save
+    redirect_to @invite, notice: 'Invite declined'
+  end
+
 
   # GET /invites
   # GET /invites.json
@@ -10,6 +33,7 @@ class InvitesController < ApplicationController
   # GET /invites/1
   # GET /invites/1.json
   def show
+    @event = @invite.event
   end
 
   # GET /invites/new
@@ -29,6 +53,7 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
+        UserMailer.invite(@invite).deliver
         format.html { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else
@@ -70,6 +95,6 @@ class InvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
-      params.require(:invite).permit(:event_id, :friend_id, :status)
+      params.require(:invite).permit(:event_id, :user_id, :status)
     end
 end

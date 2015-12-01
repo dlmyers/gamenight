@@ -68,11 +68,11 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+      @comment_creator = User.find(@comment.user_id)
     end
 
     def set_event
       @event = Event.find(params[:event_id])
-      @comment_creator = User.find(@comment.user_id)
     end
 
     def set_comment_creator

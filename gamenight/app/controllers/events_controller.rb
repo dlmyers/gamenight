@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @friends = @event.friends if @event.friends
+    @users = @event.users if @event.users
     @invites = @event.invites if @event.invites
     @comments = @event.comments if @event.comments
   end

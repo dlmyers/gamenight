@@ -1,0 +1,14 @@
+Game Night
+
+You're invited to <%= @event.name %>!
+You have been invited to <%= @event.name %> by your friend <%= @event_creator.name %>.
+
+Date: <%= @event.date.strftime('%B %-d at %-I:%M %p') %>
+Location: <%= "https://maps.google.com?q=#{@event.location}" %>
+Description: <%= @event.description %>
+
+Would you like to: 
+ - Accept <%= invite_accept_url(@invite) %>
+ - Decline <%= invite_decline_url(@invite) %>
+
+View more details: <%= invite_url @invite %>

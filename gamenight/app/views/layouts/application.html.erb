@@ -48,18 +48,18 @@
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
               <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "events" %>><%= link_to "Create an Event", new_event_path %></li>
-              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "friends" %>><%= link_to "Add a Friend", new_friend_path %></li>
+              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "users" %>><%= link_to "Add a Friend", new_user_path %></li>
             <% end %>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <!-- <li>Logged in as <strong><%= current_user.email %></strong></li> -->
-              <li><%= link_to "My Friends", friends_path %></li>
+              <li><%= link_to "My Friends", users_path %></li>
               <li><%= link_to "My Events", events_path %></li>
               <!-- <li><%= link_to "Invites", invites_path %></li> -->
               <!-- <li><%= link_to "Schedule", schedule_path %></li> -->
-              <li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
+              <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
             <% else %>
               <li><%= link_to "Sign up", new_user_registration_path%></li>

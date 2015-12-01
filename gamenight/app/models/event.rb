@@ -1,11 +1,16 @@
 class Event < ActiveRecord::Base
+	belongs_to :user
+
 	has_many :invites
-	has_many :friends, through: :invites
-    belongs_to :users
-    validates :name, :date, :location, :user_id, presence: true
-    has_many :comments
-    
-     # would need to validate timeliness for event date > https://github.com/adzap/validates_timeliness
-    
-    # do we need to get the current_user ID here  
+	has_many :users, through: :invites
+
+	 has_many :comments
+	 validates :name, :date, :location, :user_id, presence: true
+	 validate :event_date_cannot_be_in_the_past
+	 
+	 def event_date_cannot_be_in_the_past
+	        errors.add(:date, "cannot be in the past.") if
+	            !date.blank? and date < Time.now
+	 end
+
 end
