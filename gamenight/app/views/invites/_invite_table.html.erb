@@ -11,7 +11,7 @@
   <tbody>
     <% @invites.each do |invite| %>
       <tr>
-        <td><strong><%= link_to invite.friend.name, invite %></strong></td>
+        <td><strong><%= link_to invite.user.name, invite %></strong></td>
         <td><%= link_to invite.event.name, invite %></td>
         <td><%= invite_status[invite.status].first %></td>
 

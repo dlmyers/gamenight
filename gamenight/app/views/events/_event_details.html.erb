@@ -1,0 +1,31 @@
+<p>
+  <strong>Date:</strong>
+  <%= @event.date.strftime('%B %-d at %-I:%M %p') %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= link_to @event.location, "https://maps.google.com?q=#{@event.location}" %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Event creator:</strong>
+  <%= link_to @event.user.name, @event.user %>
+</p>
+
+<p>
+  <strong>Invited:</strong>
+    <% invite_status = @event.invites.collect{|invite| invite.status} %>
+    <%= @event.users.count %> invited - 
+    
+    No response: <%= invite_status.count(Invite::INVITED) %>, 
+    Accepted: <%= invite_status.count(Invite::ACCEPTED) %>, 
+    Declined: <%= invite_status.count(Invite::DECLINED) %>
+
+</p>
+

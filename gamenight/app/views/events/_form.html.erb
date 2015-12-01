@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :user_id, "Event Creator" %><br>
-    <%= link_to @event_creator.name, "mailto:"+@event_creator.email if @event_creator %>
+    <%= link_to @event_creator.name, @event_creator if @event_creator %>
   </div>
 
   <div class="actions">

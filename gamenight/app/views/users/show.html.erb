@@ -1,0 +1,21 @@
+<div id="title">User: <%= @user.name %></div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= mail_to @user.email %>
+</p>
+
+<% if @user_creator %>
+	<p>
+	  <strong>Created By:</strong>
+	  <%= link_to @user_creator.name, @user_creator  %>
+	</p>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
