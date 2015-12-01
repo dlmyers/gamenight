@@ -14,9 +14,15 @@
         <td><strong><%= link_to invite.user.name, invite %></strong></td>
         <td><%= link_to invite.event.name, invite %></td>
         <td><%= invite_status[invite.status].first %></td>
-
-        <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-        <td><%= link_to 'Delete', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+         
+         <% if invite.user_id == current_user.id || invite.event.user_id == current_user.id%>
+          <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
+          <td><%= link_to 'Delete', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

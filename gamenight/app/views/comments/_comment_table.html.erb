@@ -12,10 +12,14 @@
       <tr>
         <td><strong><%= comment.user.name %></strong><br /><%= comment.created_at.strftime('%-I:%M %p, %-m/%-d') %></td>
         <td><%= comment.comment %></td>
-
+        
+        <% if comment.user_id == current_user.id || comment.event.user_id == current_user.id%>
         <td><%= link_to 'Edit', edit_event_comment_path(@event,comment) %></td>
         <td><%= link_to 'Delete', event_comment_path(@event,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <% else %>
+        <td></td>
+        <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

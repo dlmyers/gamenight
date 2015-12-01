@@ -10,6 +10,11 @@ Welcome, <%= link_to current_user.name, edit_user_registration_path %>! <a href=
         <% if event.user_id == current_user.id %>
           <b>(Host)</b>
         <% end %>
+        <% @invites.each do |invite| %>
+          <% if invite.user_id == current_user.id && invite.event_id == event.id%>
+            Status: <%= invite_status[invite.status].first %> 
+          <% end %>
+        <% end %>
       </h3>
       <%= sanitize(event.description) %><br />
       <%= link_to event.location, "https://maps.google.com?q=#{event.location}" %>

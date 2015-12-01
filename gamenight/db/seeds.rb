@@ -8,6 +8,8 @@
 Event.delete_all
 Invite.delete_all
 User.delete_all 
+Comment.delete_all
+
 
 Event.create!(name: 'Charades',
     date: Time.now + 1,
@@ -15,20 +17,8 @@ Event.create!(name: 'Charades',
     description: 'Xmas Eve party',
     user_id: '1')
     
-Event.create!(name: 'Karaoke',
-    date: Time.now + 1,
-    location: '1323 Parsons Ave, Campbell 95008',
-    description: 'Xmas Eve party',
-    user_id: '1')
-    
-Event.create!(name: 'Risk',
-    date: Time.now + 1,
-    location: '1323 Parsons Ave, Campbell 95008',
-    description: 'Xmas Eve party',
-    user_id: '2')
-    
-User.create!(name: 'Nico',
-    email: 'nico@gmail.com',
+User.create!(name: 'Butch',
+    email: 'butch@butch.net',
     password: "password",
     created_by_id: '1')
 
