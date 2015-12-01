@@ -30,7 +30,6 @@
 </head>
 <body class='<%= controller.controller_name %>'>
 
-<div class="row">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,21 +40,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "Game Night", '/', class: "navbar-brand" %>
+          <%= link_to "Game Night", '/', class: "navbar-brand", style:"font-family: 'Oswald', sans-serif;" %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "events" %>><%= link_to "Create an Event", new_event_path %></li>
-            <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "friends" %>><%= link_to "Add a Friend", new_friend_path %></li>
-
+            <% if user_signed_in? %>
+              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "events" %>><%= link_to "Create an Event", new_event_path %></li>
+              <li <%= 'class=active' if params[:action] == "new" and params[:controller] == "friends" %>><%= link_to "Add a Friend", new_friend_path %></li>
+            <% end %>
+            
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Friends", friends_path %></li>
-            <li><%= link_to "Events", events_path %></li>
-            <li><%= link_to "Invites", invites_path %></li>
-            <li><%= link_to "Schedule", schedule_path %></li>
+            <% if user_signed_in? %>
+              <!-- <li>Logged in as <strong><%= current_user.email %></strong></li> -->
+              <li><%= link_to "My Friends", friends_path %></li>
+              <li><%= link_to "My Events", events_path %></li>
+              <!-- <li><%= link_to "Invites", invites_path %></li> -->
+              <!-- <li><%= link_to "Schedule", schedule_path %></li> -->
+              <li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_registration_path%></li>
+              <li><%= link_to "Login", new_user_session_path%></li>
+            <% end %>
 
             <li class="dropdown" style="display:none">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -71,7 +80,6 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-  </div>
 
 
 <div class="container">
@@ -86,6 +94,10 @@
 </div>
 
 <div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><p class="notice"><%= notice %></p></div>
+  <% end %>
+
   <%= yield %>      
 </div>
 
